@@ -1,0 +1,21 @@
+[tomcat@ip-172-31-31-88 ~]$ sudo cat /etc/systemd/system/tomcat.service
+[Unit]
+Description=Apache Tomcat for node JS
+After=syslog.target network.target
+#Wants=httpd.service
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment=CATALINA_PID=/opt/apache-tomcat-8.5.50/tomcat.pid
+
+ExecStart=/opt/apache-tomcat-8.5.50/bin/startup.sh
+
+ExecStop=/opt/apache-tomcat-8.5.50/bin/shutdown.sh 20 -force
+
+[Install]
+WantedBy=multi-user.target
+
+[tomcat@ip-172-31-31-88 ~]$ 
